@@ -13,7 +13,7 @@ public class CategoriaDTO implements Serializable {
     
     @NotEmpty(message = "Este campo nao pode ser vazio")
     @Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 e 80 caracteres")
-    private String nome;
+    private String name;
 
     public CategoriaDTO() {
 
@@ -21,7 +21,7 @@ public class CategoriaDTO implements Serializable {
 
     public CategoriaDTO(Categoria obj) {
         id = obj.getId();
-        nome = obj.getNome();
+        name = obj.getNome();
     }
 
     public Integer getId() {
@@ -32,11 +32,11 @@ public class CategoriaDTO implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 }
