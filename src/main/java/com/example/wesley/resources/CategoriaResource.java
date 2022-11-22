@@ -3,7 +3,6 @@ package com.example.wesley.resources;
 import com.example.wesley.domain.Categoria;
 import com.example.wesley.dto.CategoriaDTO;
 import com.example.wesley.services.CategoriaService;
-import com.fasterxml.jackson.databind.annotation.JsonValueInstantiator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
