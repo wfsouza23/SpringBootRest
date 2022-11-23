@@ -1,8 +1,6 @@
 package com.example.wesley.services;
 
-import com.example.wesley.domain.Categoria;
 import com.example.wesley.domain.Cliente;
-import com.example.wesley.dto.CategoriaDTO;
 import com.example.wesley.dto.ClienteDTO;
 import com.example.wesley.repositories.ClienteRepository;
 import com.example.wesley.services.exceptions.DataIntegrityException;

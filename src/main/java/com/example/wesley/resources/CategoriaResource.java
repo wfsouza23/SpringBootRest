@@ -23,7 +23,6 @@ public class CategoriaResource {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Categoria> find(@PathVariable Integer id) {
-
         Categoria obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
@@ -41,7 +40,7 @@ public class CategoriaResource {
             @RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
             @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction) {
-        Page<Categoria> list = service.findPage(page, linesPerPage,orderBy,direction);
+        Page<Categoria> list = service.findPage(page, linesPerPage, orderBy, direction);
         Page<CategoriaDTO> listDto = list.map(obj -> new CategoriaDTO(obj));
         return ResponseEntity.ok().body(listDto);
     }
