@@ -1,6 +1,7 @@
 package com.example.wesley.services;
 
 import com.example.wesley.domain.Categoria;
+import com.example.wesley.domain.Cliente;
 import com.example.wesley.dto.CategoriaDTO;
 import com.example.wesley.repositories.CategoriaRepository;
 import com.example.wesley.services.exceptions.DataIntegrityException;
@@ -36,9 +37,14 @@ public class CategoriaService {
         return repo.save(obj);
     }
 
-    public Categoria update(Categoria obj) {
-        find(obj.getId());
+    public Categoria update(Categoria obj){
+        Categoria newObj = find(obj.getId());
+        updateDate(newObj, obj);
         return repo.save(obj);
+    }
+
+    private void updateDate(Categoria newObj, Categoria obj) {
+        newObj.setNome(obj.getNome());
     }
 
     public void delete(Integer id) {
