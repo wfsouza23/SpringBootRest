@@ -1,7 +1,10 @@
 package com.example.wesley.resources;
 
+import com.example.wesley.domain.Categoria;
 import com.example.wesley.domain.Cliente;
+import com.example.wesley.dto.CategoriaDTO;
 import com.example.wesley.dto.ClienteDTO;
+import com.example.wesley.dto.ClienteNewDTO;
 import com.example.wesley.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +36,15 @@ public class ClienteResource {
         List<Cliente> list = service.findAll();
         List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+        Cliente obj = service.fromDto(objDto);
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 
 
