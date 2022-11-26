@@ -1,28 +1,43 @@
 package com.example.wesley.dto;
 
+import com.example.wesley.services.validation.ClienteInsert;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
     private static final long serialVersionUID = 1l;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
+    @Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 e 80 caracteres")
     private String nome;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
+    @Email(message = "Email Invalido")
     private String email;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
     private String cpfOuCnpj;
 
     private Integer tipo;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
     private String logradouro;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
     private String numero;
 
     private String complemento;
 
     private String bairro;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
     private String cep;
 
+    @NotEmpty(message = "Este campo nao pode ser vazio")
     private String telefone1;
 
     private String telefone2;
