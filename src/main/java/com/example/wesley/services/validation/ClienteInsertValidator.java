@@ -1,5 +1,7 @@
 package com.example.wesley.services.validation;
 
+import ch.qos.logback.core.net.server.Client;
+import com.example.wesley.domain.Cliente;
 import com.example.wesley.dto.ClienteNewDTO;
 import com.example.wesley.enums.TipoCliente;
 import com.example.wesley.repositories.ClienteRepository;
@@ -22,7 +24,7 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
     @Override
     public void initialize(ClienteInsert ann) {
     }
-
+    
     @Override
     public boolean isValid(ClienteNewDTO objDto, ConstraintValidatorContext context) {
 
@@ -34,6 +36,12 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 
         if (objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod()) && !BR.isValidCNPJ(objDto.getCpfOuCnpj())) {
             list.add(new FieldMessage("cpfOuCnpj", "CNPJ inválido"));
+        }
+
+        Cliente aux = repo.findByEmail(objDto.getEmail());
+
+        if(aux != null){
+            list.add(new FieldMessage("email", "Email já existente"));
         }
 
         for (FieldMessage e : list) {
