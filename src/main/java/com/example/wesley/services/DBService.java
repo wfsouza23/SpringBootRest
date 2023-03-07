@@ -2,6 +2,7 @@ package com.example.wesley.services;
 
 import com.example.wesley.domain.*;
 import com.example.wesley.enums.EstadoPagamento;
+import com.example.wesley.enums.Perfil;
 import com.example.wesley.enums.TipoCliente;
 import com.example.wesley.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,14 +108,21 @@ public class DBService {
 
         cli1.getTelefones().addAll(Arrays.asList("232324", "1313313131"));
 
+        Cliente cli2 = new Cliente(null, "ana costa", "ana@gmail.com", "12821209120", TipoCliente.PESSOAFISICA, pe.encode("123"));
+        cli2.addPerfil(Perfil.ADMIN);
+        cli2.getTelefones().addAll(Arrays.asList("232324", "9999999999"));
+
+
         Endereco e1 = new Endereco(null, "Rua flores", "300", "Apto 303", "Jardim", "38229912", cli1, c1);
         Endereco e2 = new Endereco(null, "av. matos", "105", "Sala 105", "CENTRO", "1291292", cli1, c2);
+        Endereco e3 = new Endereco(null, "av. flores", "208", "Sala 157", "zona norte", "1291292", cli2, c2);
 
         cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+        cli2.getEnderecos().addAll(Arrays.asList(e1, e2));
 
-        clienteRepository.saveAll(Arrays.asList(cli1));
+        clienteRepository.saveAll(Arrays.asList(cli1, cli2));
 
-        enderecoRepository.saveAll(Arrays.asList(e1, e2));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
